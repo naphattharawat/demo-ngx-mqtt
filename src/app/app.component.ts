@@ -6,7 +6,7 @@ import { Subscription, Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
 
   messages = [];
   private subscription: Subscription;
@@ -16,11 +16,15 @@ export class AppComponent implements OnDestroy {
     private _mqttService: MqttService
   ) {
     this.subscription = this._mqttService.observe('test').subscribe((message: IMqttMessage) => {
+      console.log(message.topic);
       console.log(message.payload.toString());
       // this.message = message.payload.toString();
-      
+
       // this.messages.push(this.message)
     });
+  }
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
   }
 
   public unsafePublish(topic: string, message: string): void {
@@ -30,4 +34,5 @@ export class AppComponent implements OnDestroy {
   public ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
 }
