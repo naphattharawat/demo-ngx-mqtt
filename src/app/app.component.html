@@ -1,0 +1,9 @@
+<!-- <input type="text" name="inputName" [(ngModel)]="inputName">
+<input type="text" name="inputMessage" [(ngModel)]="inputMessage">
+<button (click)="send()"> ส่ง</button> -->
+<table>
+  <tr *ngFor="let m of messages">
+    <td>{{m.name}}</td>
+    <td>{{m.message}}</td>
+  </tr>
+</table>
